@@ -10,6 +10,7 @@ services:
     ports:
       - "5434:5432"
     volumes:
+      - ./schema:/docker-entrypoint-initdb.d
       - gohealing_database:/var/lib/postgresql/data
     tty: true
     restart: unless-stopped
