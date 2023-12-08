@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"time"
 
+	"backend/internal/route"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -62,4 +64,7 @@ func InitServer(ctx context.Context, config Config) error {
 }
 
 func initRoutes(r chi.Router) {
+	r.Route("/api", func(r chi.Router) {
+		route.SetupEventRoutes(r)
+	})
 }
