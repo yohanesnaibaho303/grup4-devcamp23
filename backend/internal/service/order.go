@@ -38,7 +38,11 @@ func (s Order) Create(order model.Order) (uuid.UUID, error) {
 	return uuid.New(), nil
 }
 
-func (s Order) ChangeStatusToPaid(orderID uuid.UUID) error {
-	// TODO implement
+func (s Order) ChangePaymentStatusToSuccess(ctx context.Context, orderID uuid.UUID) error {
+	err := s.repo.ChangePaymentStatusToSuccess(ctx, orderID)
+	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
 	return nil
 }

@@ -98,17 +98,37 @@ func (o *Order) Create(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-func (o *Order) ChangeStatusToPaid(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
+func (o *Order) ChangeStatusToSuccess(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var resp model.Response
+
 	id := chi.URLParam(r, "id")
-	log.Println(id)
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	uuid, err := uuid.Parse(id)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api pay order",
+
+	err = o.svc.ChangePaymentStatusToSuccess(r.Context(), uuid)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+	}
+
+	resp = model.Response{
+		Success: true,
+		Message: "buy ticket success",
 	}
 
 	w.WriteHeader(http.StatusOK)

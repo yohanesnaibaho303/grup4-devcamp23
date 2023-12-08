@@ -21,6 +21,7 @@ type (
 	Order interface {
 		GetAll(context.Context) ([]model.Order, error)
 		GetByID(ctx context.Context, id uuid.UUID) (model.Order, error)
+		ChangePaymentStatusToSuccess(ctx context.Context, orderID uuid.UUID) error
 	}
 
 	Transport interface {
