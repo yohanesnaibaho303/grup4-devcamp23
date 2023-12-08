@@ -66,5 +66,7 @@ func InitServer(ctx context.Context, config Config) error {
 func initRoutes(r chi.Router) {
 	r.Route("/api", func(r chi.Router) {
 		route.SetupEventRoutes(r)
+		route.SetupOrderRoutes(r)
+		route.SetupTransportRoutes(r)
 	})
 }

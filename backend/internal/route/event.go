@@ -14,5 +14,7 @@ func SetupEventRoutes(r chi.Router) {
 
 	r.Route("/v1/events", func(r chi.Router) {
 		r.Get("/", handler.GetAll)
+		r.Get("/{id}", handler.GetByID)
+		r.Get("/{id}/tickets", handler.GetTicketCategoriesByEventID)
 	})
 }
