@@ -1,9 +1,12 @@
 package db
 
 import (
+	"context"
+
 	"backend/internal/model"
 	"backend/internal/repository"
 
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -17,7 +20,7 @@ func NewTicketRepo(db *sqlx.DB) repository.Ticket {
 	}
 }
 
-func (r *ticketImpl) GetByEventID() ([]model.Ticket, error) {
+func (r *ticketImpl) GetByEventID(ctx context.Context, eventID uuid.UUID) ([]model.Ticket, error) {
 	// TODO implement
 	return make([]model.Ticket, 0), nil
 }

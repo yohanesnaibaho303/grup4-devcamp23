@@ -84,17 +84,36 @@ func (e *Event) GetByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func (e *Event) GetTicketCategoriesByEventID(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	id := chi.URLParam(r, "id")
-	log.Println(id)
+	w.Header().Set("Content-Type", "application/json")
 
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	var resp model.Response
+
+	eventID := chi.URLParam(r, "id")
+	eventUUID, err := uuid.Parse(eventID)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api get ticket categories by event id",
+
+	tickets, err := e.svc.GetTicketCategoriesByEventID(r.Context(), eventUUID)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+	}
+
+	resp = model.Response{
+		Success: true,
+		Data:    tickets,
 	}
 
 	w.WriteHeader(http.StatusOK)

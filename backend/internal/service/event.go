@@ -35,7 +35,12 @@ func (s Event) GetByID(ctx context.Context, id uuid.UUID) (model.Event, error) {
 	return event, nil
 }
 
-func (s Event) GetTicketCategoriesByEventID(eventID uuid.UUID) ([]model.Ticket, error) {
-	// TODO implement
-	return make([]model.Ticket, 0), nil
+func (s Event) GetTicketCategoriesByEventID(ctx context.Context, eventUUID uuid.UUID) ([]model.Ticket, error) {
+	tickets, err := s.repoTicket.GetByEventID(ctx, eventUUID)
+	if err != nil {
+		log.Println(err.Error())
+		return nil, err
+	}
+
+	return tickets, nil
 }

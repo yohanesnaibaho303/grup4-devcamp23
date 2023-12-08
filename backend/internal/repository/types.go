@@ -15,7 +15,7 @@ type (
 	}
 
 	Ticket interface {
-		GetByEventID() ([]model.Ticket, error)
+		GetByEventID(ctx context.Context, eventID uuid.UUID) ([]model.Ticket, error)
 	}
 
 	Order interface {
