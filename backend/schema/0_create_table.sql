@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- CREATE TABLE cities
 CREATE TABLE IF NOT EXISTS cities (
-    id PRIMARY KEY SERIAL,
+    id SERIAL PRIMARY KEY,
     name varchar(100) NOT NULL
 )
 
@@ -31,11 +31,10 @@ CREATE TABLE IF NOT EXISTS tickets (
     price NUMERIC NOT NULL
 );
 
-CREATE TYPE transport_service_enum AS ENUM ('goride', 'gocar');
-
 -- CREATE TABLE transport_services
+CREATE TYPE transport_service_enum AS ENUM ('goride', 'gocar');
 CREATE TABLE IF NOT EXISTS transport_services (
-    id PRIMARY KEY SERIAL,
+    id SERIAL PRIMARY KEY,
     type transport_service_enum NOT NULL,
     city_id int REFERENCES cities(id) NOT NULL,
     price NUMERIC NOT NULL
@@ -43,7 +42,7 @@ CREATE TABLE IF NOT EXISTS transport_services (
 
 -- CREATE TABLE orders
 CREATE TABLE IF NOT EXISTS orders (
-    id PRIMARY KEY SERIAL,
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     event_id uuid REFERENCES events(id) NOT NULL,
     user_id uuid REFERENCES users(id) NOT NULL,
     ticket_id uuid REFERENCES tickets(id) NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS orders (
 )
 
 -- CREATE TABLE payments
-CREATE TYPE payment_status_enum AS ENUM ('success', 'pending','failed');
+CREATE TYPE payment_status_enum AS ENUM ('success', 'pending', 'failed');
 CREATE TABLE IF NOT EXISTS payments (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     order_id uuid REFERENCES orders(id) NOT NULL,
@@ -60,6 +59,3 @@ CREATE TABLE IF NOT EXISTS payments (
     created_at timestamp NOT NULL,
     updated_at timestamp
 )
-
-
-
