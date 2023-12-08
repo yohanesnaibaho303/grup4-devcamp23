@@ -5,9 +5,11 @@ import (
 	"log"
 	"net/http"
 
+	"backend/internal/model"
 	"backend/internal/service"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/google/uuid"
 )
 
 type Order struct {
@@ -21,14 +23,23 @@ func NewOrderHandler(svc service.Order) Order {
 }
 
 func (o *Order) GetAll(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	w.Header().Set("Content-Type", "application/json")
+	var resp model.Response
+
+	orders, err := o.svc.GetAll(r.Context())
+	if err != nil {
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api get orders list",
+
+	resp = model.Response{
+		Success: true,
+		Data:    orders,
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -36,14 +47,36 @@ func (o *Order) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func (o *Order) GetByID(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	w.Header().Set("Content-Type", "application/json")
+
+	var resp model.Response
+
+	id := chi.URLParam(r, "id")
+	uuid, err := uuid.Parse(id)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api get order detail by id",
+
+	event, err := o.svc.GetByID(r.Context(), uuid)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+	}
+
+	resp = model.Response{
+		Success: true,
+		Data:    event,
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -65,17 +98,37 @@ func (o *Order) Create(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-func (o *Order) ChangeStatusToPaid(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
+func (o *Order) ChangeStatusToSuccess(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var resp model.Response
+
 	id := chi.URLParam(r, "id")
-	log.Println(id)
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	uuid, err := uuid.Parse(id)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api pay order",
+
+	err = o.svc.ChangePaymentStatusToSuccess(r.Context(), uuid)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+	}
+
+	resp = model.Response{
+		Success: true,
+		Message: "buy ticket success",
 	}
 
 	w.WriteHeader(http.StatusOK)

@@ -15,14 +15,16 @@ type (
 	}
 
 	Ticket interface {
-		GetByEventID() ([]model.Ticket, error)
+		GetByEventID(ctx context.Context, eventID uuid.UUID) ([]model.Ticket, error)
 	}
 
 	Order interface {
-		GetAll() ([]model.Order, error)
+		GetAll(context.Context) ([]model.Order, error)
+		GetByID(ctx context.Context, id uuid.UUID) (model.Order, error)
+		ChangePaymentStatusToSuccess(ctx context.Context, orderID uuid.UUID) error
 	}
 
 	Transport interface {
-		GetRecommendations() ([]model.Transport, error)
+		GetRecommendations(ctx context.Context) ([]model.Transport, error)
 	}
 )

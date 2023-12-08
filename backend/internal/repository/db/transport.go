@@ -1,6 +1,8 @@
 package db
 
 import (
+	"context"
+
 	"backend/internal/model"
 	"backend/internal/repository"
 
@@ -17,6 +19,7 @@ func NewTransportRepo(db *sqlx.DB) repository.Transport {
 	}
 }
 
-func (r *transportImpl) GetRecommendations() ([]model.Transport, error) {
+func (r *transportImpl) GetRecommendations(ctx context.Context) ([]model.Transport, error) {
+	// TODO implement
 	return make([]model.Transport, 0), nil
 }

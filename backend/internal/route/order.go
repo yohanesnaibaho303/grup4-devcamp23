@@ -18,6 +18,6 @@ func SetupOrderRoutes(r chi.Router, db *sqlx.DB) {
 		r.Get("/", handler.GetAll)
 		r.Get("/{id}", handler.GetByID)
 		r.Post("/", handler.Create)
-		r.Patch("/{id}/pay", handler.ChangeStatusToPaid)
+		r.Patch("/{id}/pay", handler.ChangeStatusToSuccess)
 	})
 }

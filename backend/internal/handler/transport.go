@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"backend/internal/model"
 	"backend/internal/service"
 )
 
@@ -18,14 +19,23 @@ func NewTransportHandler(svc service.Transport) Transport {
 }
 
 func (t *Transport) GetRecommendations(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	w.Header().Set("Content-Type", "application/json")
+	var resp model.Response
+
+	transports, err := t.svc.GetRecommendations(r.Context())
+	if err != nil {
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api get transports recommendation",
+
+	resp = model.Response{
+		Success: true,
+		Data:    transports,
 	}
 
 	w.WriteHeader(http.StatusOK)

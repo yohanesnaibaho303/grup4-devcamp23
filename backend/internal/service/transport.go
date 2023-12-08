@@ -1,6 +1,8 @@
 package service
 
 import (
+	"context"
+
 	"backend/internal/model"
 	"backend/internal/repository"
 )
@@ -15,7 +17,6 @@ func NewTransportService(repo repository.Transport) Transport {
 	}
 }
 
-func (s Transport) GetRecommendations() ([]model.Transport, error) {
-	// TODO implement
-	return make([]model.Transport, 0), nil
+func (s Transport) GetRecommendations(ctx context.Context) ([]model.Transport, error) {
+	return s.repo.GetRecommendations(ctx)
 }
