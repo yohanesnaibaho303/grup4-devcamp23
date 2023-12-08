@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- CREATE TABLE users
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE IF NOT EXISTS users (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     email varchar(100) UNIQUE,
     password varchar(100) NOT NULL
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users(
 
 -- CREATE TABLE cities
 CREATE TABLE IF NOT EXISTS cities (
-    id  PRIMARY KEY SERIAL,
+    id PRIMARY KEY SERIAL,
     name varchar(100) NOT NULL
 )
 
@@ -28,21 +28,21 @@ CREATE TABLE IF NOT EXISTS tickets (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     event_id uuid REFERENCES events(id) NOT NULL,
     category varchar(50) NOT NULL,
-    price NUMERIC NOT NULL,
+    price NUMERIC NOT NULL
 );
 
 CREATE TYPE transport_service_enum AS ENUM ('goride', 'gocar');
 
 -- CREATE TABLE transport_services
-CREATE TABLE IF NOT EXISTS transport_services(
+CREATE TABLE IF NOT EXISTS transport_services (
     id PRIMARY KEY SERIAL,
     type transport_service_enum NOT NULL,
     city_id int REFERENCES cities(id) NOT NULL,
-    price NUMERIC NOT NULL,
+    price NUMERIC NOT NULL
 )
 
 -- CREATE TABLE orders
-CREATE TABLE IF NOT EXISTS orders(
+CREATE TABLE IF NOT EXISTS orders (
     id PRIMARY KEY SERIAL,
     event_id uuid REFERENCES events(id) NOT NULL,
     user_id uuid REFERENCES users(id) NOT NULL,
@@ -52,13 +52,13 @@ CREATE TABLE IF NOT EXISTS orders(
 
 -- CREATE TABLE payments
 CREATE TYPE payment_status_enum AS ENUM ('success', 'pending','failed');
-CREATE TABLE IF NOT EXISTS payments(
+CREATE TABLE IF NOT EXISTS payments (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     order_id uuid REFERENCES orders(id) NOT NULL,
     status payment_status_enum NOT NULL,
     amount NUMERIC NOT NULL,
     created_at timestamp NOT NULL,
-    updated_at timestamp,
+    updated_at timestamp
 )
 
 
