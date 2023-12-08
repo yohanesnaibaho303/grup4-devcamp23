@@ -1,6 +1,9 @@
 package service
 
 import (
+	"context"
+	"log"
+
 	"backend/internal/model"
 	"backend/internal/repository"
 
@@ -17,14 +20,17 @@ func NewOrderService(repo repository.Order) Order {
 	}
 }
 
-func (s Order) GetAll() ([]model.Order, error) {
-	// TODO implement
-	return make([]model.Order, 0), nil
+func (s Order) GetAll(ctx context.Context) ([]model.Order, error) {
+	return s.repo.GetAll(ctx)
 }
 
-func (s Order) GetByID(id uuid.UUID) (model.Order, error) {
-	// TODO implement
-	return model.Order{}, nil
+func (s Order) GetByID(ctx context.Context, id uuid.UUID) (model.Order, error) {
+	order, err := s.repo.GetByID(ctx, id)
+	if err != nil {
+		log.Println(err.Error())
+		return model.Order{}, err
+	}
+	return order, nil
 }
 
 func (s Order) Create(order model.Order) (uuid.UUID, error) {

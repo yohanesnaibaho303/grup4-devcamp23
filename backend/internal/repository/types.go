@@ -19,7 +19,8 @@ type (
 	}
 
 	Order interface {
-		GetAll() ([]model.Order, error)
+		GetAll(context.Context) ([]model.Order, error)
+		GetByID(ctx context.Context, id uuid.UUID) (model.Order, error)
 	}
 
 	Transport interface {
