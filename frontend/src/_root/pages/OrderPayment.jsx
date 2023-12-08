@@ -1,11 +1,14 @@
 import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const OrderPayment = () => {
   return (
     <div className="flex flex-col justify-between min-h-screen">
       <div>
         <div className="flex p-4 items-center gap-3">
-          <FaArrowLeft className="text-xl" />
+          <Link to="/orders/summary">
+            <FaArrowLeft className="text-xl" />
+          </Link>
           <h3 className="font-bold text font-['Open Sans'] text-black">
             Transfer Sekarang
           </h3>
@@ -32,12 +35,16 @@ const OrderPayment = () => {
         </div>
       </div>
       <div className="flex flex-col px-4 gap-3 mb-4">
-        <button className="w-full border-green-700 rounded-lg border-2">
-          <p className="font-bold text-green-700 py-3">Kembali ke beranda</p>
-        </button>
-        <button className="w-full bg-green-700 rounded-lg ">
-          <p className="font-bold text-white py-3">Kembali ke beranda</p>
-        </button>
+        <Link to="/home">
+          <button className="w-full border-green-700 rounded-lg border-2">
+            <p className="font-bold text-green-700 py-3">Kembali ke beranda</p>
+          </button>
+        </Link>
+        <Link to="/orders">
+          <button className="w-full bg-green-700 rounded-lg ">
+            <p className="font-bold text-white py-3">Saya sudah Bayar</p>
+          </button>
+        </Link>
       </div>
     </div>
   );
