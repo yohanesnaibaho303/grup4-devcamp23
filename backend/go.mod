@@ -8,4 +8,7 @@ require (
 	github.com/lib/pq v1.2.0
 )
 
-require github.com/google/uuid v1.4.0 // indirect
+require (
+	github.com/go-chi/cors v1.2.1 // indirect
+	github.com/google/uuid v1.4.0 // indirect
+)
