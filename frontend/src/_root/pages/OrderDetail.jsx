@@ -1,66 +1,71 @@
-import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const OrderDetail = () => {
   return (
-    <div className="w-[390px] h-[844px] relative bg-white">
-      <div className="left-[48px] top-[17px] absolute text-black text-base font-bold font-['Open Sans']">
-        Detail Pesanan
+    <div className="min-h-screen">
+      <div className="flex p-4 items-center gap-3">
+        <Link to="/orders/">
+          <FaArrowLeft className="text-xl" />
+        </Link>
+        <h3 className="font-bold text font-['Open Sans'] text-black">
+          Detail Pesanan
+        </h3>
       </div>
-      <div className="w-[390px] h-[0px] left-0 top-[54px] absolute border border-zinc-300"></div>
-      <div className="w-[390px] h-[0px] left-0 top-[365px] absolute border-4 border-zinc-300"></div>
-      <div className="w-6 h-6 left-[16px] top-[16px] absolute" />
-      <div className="left-[16px] top-[381px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Transaksi berhasil
+
+      <hr />
+
+      <div className="flex flex-col items-center mt-4">
+        <h6 className="font-bold text-black">Tiket Kode QR</h6>
+        <p className="text-gray-500 text-sm mt-2">
+          Scan kode QR ini pada saat datang di event
+        </p>
+        <img
+          src="https://www.barcode-generator.org/wp-content/uploads/2013/11/jpeg.jpg"
+          alt="qrcode"
+        />
       </div>
-      <div className="left-[16px] top-[456px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Detail
+
+      <div className="h-1 bg-gray-200 mt-6" />
+
+      <div className="p-4">
+        <h6 className="font-bold text-black">Transaksi berhasil</h6>
+        <div className="flex justify-between text-sm mt-2">
+          <p>Tanggal transaksi</p>
+          <p className="font-bold">29 Nov 2023 06:52</p>
+        </div>
       </div>
-      <div className="left-[16px] top-[555px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Info transport
+
+      <hr />
+
+      <div className="p-4">
+        <h6 className="font-bold text-black">Transaksi berhasil</h6>
+        <div className="flex justify-between text-sm mt-2">
+          <p>Nama Event</p>
+          <p className="font-bold">Konser Jekardah</p>
+        </div>
+        <div className="flex justify-between text-sm mt-2">
+          <p>Kategori Tiket</p>
+          <p className="font-bold">Reguler</p>
+        </div>
       </div>
-      <div className="left-[16px] top-[630px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Total Pembayaran
+
+      <hr />
+
+      <div className="p-4">
+        <h6 className="font-bold text-black">Info transport</h6>
+        <div className="flex justify-between text-sm mt-2">
+          <p>Jenis</p>
+          <p className="font-bold">GoRide</p>
+        </div>
       </div>
-      <div className="left-[145px] top-[70px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Tiket Kode QR
+
+      <hr />
+
+      <div className="p-4 flex justify-between">
+        <h6 className="font-bold text-black">Total Pembayaran</h6>
+        <p className="font-bold">Rp890.000</p>
       </div>
-      <div className="left-[16px] top-[408px] absolute text-neutral-400 text-xs font-normal font-['Open Sans']">
-        Tanggal Transaksi
-      </div>
-      <div className="left-[16px] top-[483px] absolute text-neutral-400 text-xs font-normal font-['Open Sans']">
-        Nama Event
-      </div>
-      <div className="left-[16px] top-[582px] absolute text-neutral-400 text-xs font-normal font-['Open Sans']">
-        Jenis{" "}
-      </div>
-      <div className="left-[16px] top-[507px] absolute text-neutral-400 text-xs font-normal font-['Open Sans']">
-        Tiket
-      </div>
-      <div className="left-[275px] top-[483px] absolute text-right text-black text-xs font-bold font-['Open Sans']">
-        Konser Jekardah
-      </div>
-      <div className="left-[290px] top-[507px] absolute text-right text-black text-xs font-bold font-['Open Sans']">
-        SHOW GOLD 3
-      </div>
-      <div className="left-[331px] top-[582px] absolute text-right text-black text-xs font-bold font-['Open Sans']">
-        GoRide
-      </div>
-      <div className="left-[310px] top-[631px] absolute text-right text-black text-xs font-bold font-['Open Sans']">
-        Rp 890.000
-      </div>
-      <div className="left-[268px] top-[408px] absolute text-right text-black text-xs font-bold font-['Open Sans']">
-        29 Nov 2023 06:52
-      </div>
-      <div className="w-[390px] h-[0px] left-0 top-[440px] absolute border-4 border-gray-200 border-opacity-70"></div>
-      <div className="w-[390px] h-[0px] left-0 top-[539px] absolute border-4 border-gray-200 border-opacity-70"></div>
-      <div className="w-[390px] h-[0px] left-0 top-[614px] absolute border-4 border-gray-200 border-opacity-70"></div>
-      <div className="left-[74px] top-[97px] absolute text-center text-black text-xs font-normal font-['Open Sans']">
-        Scan kode QR ini pada saat datang di event
-      </div>
-      <img
-        className="w-[215px] h-[218px] left-[87px] top-[123px] absolute"
-        src="https://via.placeholder.com/215x218"
-      />
     </div>
   );
 };
