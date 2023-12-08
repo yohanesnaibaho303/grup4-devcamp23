@@ -5,9 +5,11 @@ import (
 	"log"
 	"net/http"
 
+	"backend/internal/model"
 	"backend/internal/service"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/google/uuid"
 )
 
 type Event struct {
@@ -21,19 +23,23 @@ func NewEventHandler(svc service.Event) Event {
 }
 
 func (e *Event) GetAll(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	_, err := e.svc.GetAll()
+	w.Header().Set("Content-Type", "application/json")
+	var resp model.Response
+
+	events, err := e.svc.GetAll(r.Context())
 	if err != nil {
-		log.Println("Error", err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
 	}
 
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
-	}
-	resp := response{
-		Status:  true,
-		Message: "api get events list",
+	resp = model.Response{
+		Success: true,
+		Data:    events,
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -41,16 +47,36 @@ func (e *Event) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func (e *Event) GetByID(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
+	w.Header().Set("Content-Type", "application/json")
+
+	var resp model.Response
+
 	id := chi.URLParam(r, "id")
-	log.Println(id)
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	uuid, err := uuid.Parse(id)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 	}
-	resp := response{
-		Status:  true,
-		Message: "api get event by id",
+
+	event, err := e.svc.GetByID(r.Context(), uuid)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+	}
+
+	resp = model.Response{
+		Success: true,
+		Data:    event,
 	}
 
 	w.WriteHeader(http.StatusOK)

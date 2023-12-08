@@ -1,6 +1,9 @@
 package service
 
 import (
+	"context"
+	"log"
+
 	"backend/internal/model"
 	"backend/internal/repository"
 
@@ -19,14 +22,17 @@ func NewEventService(repoEvent repository.Event, repoTicket repository.Ticket) E
 	}
 }
 
-func (s Event) GetAll() ([]model.Event, error) {
-	// TODO implement
-	return make([]model.Event, 0), nil
+func (s Event) GetAll(ctx context.Context) ([]model.Event, error) {
+	return s.repoEvent.GetAll(ctx)
 }
 
-func (s Event) GetByID(id uuid.UUID) (model.Event, error) {
-	// TODO implement
-	return model.Event{}, nil
+func (s Event) GetByID(ctx context.Context, id uuid.UUID) (model.Event, error) {
+	event, err := s.repoEvent.GetByID(ctx, id)
+	if err != nil {
+		log.Println(err.Error())
+		return model.Event{}, err
+	}
+	return event, nil
 }
 
 func (s Event) GetTicketCategoriesByEventID(eventID uuid.UUID) ([]model.Ticket, error) {
