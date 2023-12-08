@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: gohealing_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - gohealing_database:/var/lib/postgresql/data
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  gohealing_database:
+    driver: local
