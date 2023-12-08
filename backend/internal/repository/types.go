@@ -24,6 +24,6 @@ type (
 	}
 
 	Transport interface {
-		GetRecommendations() ([]model.Transport, error)
+		GetRecommendations(ctx context.Context) ([]model.Transport, error)
 	}
 )
