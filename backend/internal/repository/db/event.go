@@ -27,7 +27,7 @@ func (r *eventImpl) GetAll(ctx context.Context) ([]model.Event, error) {
 				events.name, 
 				events.image_url, 
 				cities.name as city,
-				events.date,
+				events.date
 			FROM events JOIN cities 
 			ON events.city_id = cities.id`
 	rows, err := r.db.QueryContext(ctx, query)
