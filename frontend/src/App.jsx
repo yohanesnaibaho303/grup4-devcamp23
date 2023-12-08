@@ -17,8 +17,8 @@ function App() {
     <main>
       <Routes>
         {/* public routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SigninForm />} />
+        <Route index element={<SigninForm />} />
+        <Route path="/home" element={<Home />} />
 
         <Route path="/id" element={<EventDetail />} />
         <Route path="/id/category" element={<CategoryTiket />} />
