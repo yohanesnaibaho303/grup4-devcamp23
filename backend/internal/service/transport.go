@@ -17,6 +17,6 @@ func NewTransportService(repo repository.Transport) Transport {
 	}
 }
 
-func (s Transport) GetRecommendations(ctx context.Context) ([]model.Transport, error) {
-	return s.repo.GetRecommendations(ctx)
+func (s Transport) GetRecommendations(ctx context.Context, city string) ([]model.Transport, error) {
+	return s.repo.GetRecommendations(ctx, city)
 }

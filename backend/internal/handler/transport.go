@@ -22,7 +22,9 @@ func (t *Transport) GetRecommendations(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var resp model.Response
 
-	transports, err := t.svc.GetRecommendations(r.Context())
+	city := r.URL.Query().Get("city")
+
+	transports, err := t.svc.GetRecommendations(r.Context(), city)
 	if err != nil {
 		resp = model.Response{
 			Success: false,
