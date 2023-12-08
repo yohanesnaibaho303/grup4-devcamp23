@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS cities (
     id SERIAL PRIMARY KEY,
     name varchar(100) NOT NULL
-)
+);
 
 -- CREATE TABLE events
 CREATE TABLE IF NOT EXISTS events (
