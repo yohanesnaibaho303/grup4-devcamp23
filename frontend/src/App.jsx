@@ -20,8 +20,8 @@ function App() {
         <Route index element={<SigninForm />} />
         <Route path="/home" element={<Home />} />
 
-        <Route path="/id" element={<EventDetail />} />
-        <Route path="/id/category" element={<CategoryTiket />} />
+        <Route path="/:id" element={<EventDetail />} />
+        <Route path="/:id/category" element={<CategoryTiket />} />
 
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/id" element={<OrderDetail />} />

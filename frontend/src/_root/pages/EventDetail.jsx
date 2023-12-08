@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const EventDetail = () => {
   return (
     <div className="event-detail">

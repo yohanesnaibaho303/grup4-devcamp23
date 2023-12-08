@@ -1,70 +1,124 @@
-import { Container, Row, Col, Stack, Card } from "react-bootstrap";
+import axios from "axios";
+import Spinner from "../../components/Spinner";
+import { useEffect, useState } from "react";
+import { eventHome } from "../../constans";
+import { useNavigate, Link } from "react-router-dom";
 import "./Home.css";
 
+import { Row, Col, Card } from "react-bootstrap";
+
 const Home = () => {
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("url")
+      .then((res) => {
+        setData(res.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="flex justify-between">
         <div className="title">Events</div>
         <div className="pt-3 pe-3 ms-auto">
-          <img src="/assets/history.svg" alt="history-icon" />
+          <Link to="/orders">
+            <img src="/assets/history.svg" alt="history-icon" />
+          </Link>
         </div>
       </div>
+      {/* <Row>
+        {eventHome.map((data) => {
+          return (
+            <Card style={{ width: "18rem" }} key={data.id}>
+              <Card.Img variant="top" src={data.image_url} />
+              <Card.Body>
+                <Card.Title>{data.city}</Card.Title>
+                <Card.Text>{data.name}</Card.Text>
+                <Card.Text>{data.date}</Card.Text>
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </Row> */}
       <div className="eventContainer shadow rounded-lg">
-        <div className="eventCard">
-          <div className="eventImageContainer">
-            <img src="/assets/AM-ticket.jpg" alt="" className="eventImage" />
+        {eventHome.slice(0, 1).map((data) => (
+          <div className="eventCard" key={data.id}>
+            <div className="eventImageContainer">
+              <img src={data.image_url} alt="" className="eventImage" />
+            </div>
+            <div className="eventContent">
+              <div className="eventLocation">{data.city}</div>
+              <div className="eventName">{data.name}</div>
+            </div>
           </div>
-          <div className="eventContent">
-            <div className="eventName">SEA AquariumTM</div>
-            <div className="eventLocation">Jakarta</div>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="rightEventContainer shadow rounded-lg">
-        <div className="rightEventCard">
-          <div className="rightEventImageContainer">
-            <img
-              src="/assets/coldplay-ticket.jpeg"
-              alt=""
-              className="rightEventImage"
-            />
-          </div>
-          <div className="rightEventContent">
-            <div className="rightEventName">Nama Event</div>
-            <div className="rightEventLocation">Lokasi Event</div>
-          </div>
-        </div>
+        {eventHome.slice(1, 2).map((data) => {
+          return (
+            <div className="rightEventCard" key={data.id}>
+              <div className="rightEventImageContainer">
+                <img
+                  src={data.image_url}
+                  alt="second"
+                  className="rightEventImage"
+                />
+              </div>
+              <div className="rightEventContent">
+                <div className="rightEventLocation">{data.city}</div>
+                <div className="rightEventName">{data.name}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="bottomLeftEventContainer shadow rounded-lg">
-        <div className="bottomLeftEventCard">
-          <div className="bottomLeftEventImageContainer">
-            <img
-              src="/assets/javajazz.png"
-              alt=""
-              className="bottomLeftEventImage"
-            />
-          </div>
-          <div className="bottomLeftEventContent">
-            <div className="bottomLeftEventName">SEA AquariumTM</div>
-            <div className="bottomLeftEventLocation">Jakarta</div>
-          </div>
-        </div>
+      <div className="bottomLeftEventContainer shadow rounded-lg pt-16">
+        {eventHome.slice(2, 3).map((data) => {
+          return (
+            <div className="bottomLeftEventCard" key={data.id}>
+              <div className="bottomLeftEventImageContainer">
+                <img
+                  src={data.image_url}
+                  alt=""
+                  className="bottomLeftEventImage"
+                />
+              </div>
+              <div className="bottomLeftEventContent">
+                <div className="bottomLeftEventLocation">{data.city}</div>
+                <div className="bottomLeftEventName">{data.name}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="bottomRightEventContainer shadow rounded-lg">
-        <div className="bottomRightEventCard">
-          <div className="bottomRightEventImageContainer">
-            <img
-              src="/assets/bornpink.png"
-              alt=""
-              className="bottomRightEventImage"
-            />
-          </div>
-          <div className="bottomRightEventContent">
-            <div className="bottomRightEventName">Nama Event</div>
-            <div className="bottomRightEventLocation">Lokasi Event</div>
-          </div>
-        </div>
+      <div className="bottomRightEventContainer shadow rounded-lg pt-16">
+        {eventHome.slice(3, 4).map((data) => {
+          return (
+            <div className="bottomRightEventCard" key={data.id}>
+              <div className="bottomRightEventImageContainer">
+                <img
+                  src={data.image_url}
+                  alt=""
+                  className="bottomRightEventImage"
+                />
+              </div>
+              <div className="bottomRightEventContent">
+                <div className="bottomRightEventLocation">{data.city}</div>
+                <div className="bottomRightEventName">{data.name}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
