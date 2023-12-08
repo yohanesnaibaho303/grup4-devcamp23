@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"log"
+	"time"
 
 	"backend/internal/model"
 	"backend/internal/repository"
@@ -32,8 +33,8 @@ func (r *orderImpl) GetByID(ctx context.Context, id uuid.UUID) (model.Order, err
 }
 
 func (r *orderImpl) ChangePaymentStatusToSuccess(ctx context.Context, orderID uuid.UUID) error {
-	query := `UPDATE "payments" SET "status" = $1 WHERE "order_id" = $2`
-	_, err := r.db.QueryContext(ctx, query, "success", orderID)
+	query := `UPDATE "payments" SET "status" = $1, "updated_at"=$2 WHERE "order_id" = $3`
+	_, err := r.db.QueryContext(ctx, query, "success", time.Now(), orderID)
 	if err != nil {
 		log.Println(err.Error())
 		return err
