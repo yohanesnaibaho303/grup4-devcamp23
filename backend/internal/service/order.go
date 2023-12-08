@@ -33,9 +33,8 @@ func (s Order) GetByID(ctx context.Context, id uuid.UUID) (model.Order, error) {
 	return order, nil
 }
 
-func (s Order) Create(order model.Order) (uuid.UUID, error) {
-	// TODO implement
-	return uuid.New(), nil
+func (s Order) Create(ctx context.Context, orderReq model.OrderRequest) (uuid.UUID, error) {
+	return s.repo.Create(ctx, orderReq)
 }
 
 func (s Order) ChangePaymentStatusToSuccess(ctx context.Context, orderID uuid.UUID) error {

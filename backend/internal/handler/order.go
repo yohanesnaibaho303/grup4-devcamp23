@@ -87,14 +87,40 @@ func (o *Order) GetByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func (o *Order) Create(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement
-	type response struct {
-		Status  bool   `json:"status"`
-		Message string `json:"message"`
+	w.Header().Set("Content-Type", "application/json")
+	var resp model.Response
+
+	var orderReq model.OrderRequest
+
+	err := json.NewDecoder(r.Body).Decode(&orderReq)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
+		return
 	}
-	resp := response{
-		Status:  true,
-		Message: "api create order",
+
+	id, err := o.svc.Create(r.Context(), orderReq)
+	if err != nil {
+		log.Println(err.Error())
+		resp = model.Response{
+			Success: false,
+			Message: err.Error(),
+		}
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(resp)
+		return
+	}
+
+	resp = model.Response{
+		Success: true,
+		Data: map[string]interface{}{
+			"id": id,
+		},
 	}
 
 	w.WriteHeader(http.StatusCreated)
