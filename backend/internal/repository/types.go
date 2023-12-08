@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"context"
+
 	"backend/internal/model"
 
 	"github.com/google/uuid"
@@ -8,8 +10,8 @@ import (
 
 type (
 	Event interface {
-		GetAll() ([]model.Event, error)
-		GetByID(id uuid.UUID) (model.Event, error)
+		GetAll(ctx context.Context) ([]model.Event, error)
+		GetByID(ctx context.Context, id uuid.UUID) (model.Event, error)
 	}
 
 	Ticket interface {
