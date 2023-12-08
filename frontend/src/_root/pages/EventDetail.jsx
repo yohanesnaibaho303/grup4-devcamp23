@@ -1,17 +1,24 @@
 import axios from "axios";
 
+import { eventHome } from "../../constans";
+import { useParams } from "react-router-dom";
+
 const EventDetail = () => {
+  const { id } = useParams();
+  const eventDetail = eventHome.find((e) => e.id === id);
+  // console.log(eventDetail);
+
   return (
     <div className="event-detail">
       <div className="w-[390px] h-[959px] relative bg-white">
         <img
-          src="/assets/AM-ticket.jpg"
+          src={eventDetail.image_url}
           className="w-[390px] h-[242px] left-0 top-0 absolute bg-zinc-300"
           alt="image-detail"
         />
         {/* <div className="w-[126px] h-[126px] left-[132px] top-[58px] absolute" /> */}
         <div className="left-[16px] top-[266px] absolute text-sm font-bold">
-          Bandung
+          {eventDetail.city}
         </div>
         <div className="left-[16px] top-[383px] absolute text-base font-bold">
           Tentang Kegiatan Ini
@@ -20,19 +27,10 @@ const EventDetail = () => {
           Detail Lokasi
         </div>
         <div className="w-[358px] left-[16px] top-[293px] absolute text-2xl font-bold">
-          From 2 With Love (F2WL) <br /> 2024 - Gadhavestra
+          {eventDetail.name}
         </div>
         <div className="w-[358px] left-[16px] top-[413px] absolute text-sm font-normal">
-          Lorem ipsum dolor sit amet consectetur. Pharetra eget pellentesque
-          faucibus aenean. At et purus tellus cras arcu nunc cras vitae enim.
-          Cras vestibulum nibh in ullamcorper. In mattis mi morbi consectetur
-          fermentum id pretium donec.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet consectetur. Pharetra eget pellentesque
-          faucibus aenean. At et purus tellus cras arcu nunc cras vitae enim.
-          Cras vestibulum nibh in ullamcorper. In mattis mi morbi consectetur
-          fermentum id pretium donec.
+          {eventDetail.desc}
         </div>
         <div className="">
           <div className="left-[16px] top-[875px] absolute text-xs font-normal">
@@ -49,7 +47,7 @@ const EventDetail = () => {
         </div>
         <div className="w-[356px] h-[111px] left-[18px] top-[680px] absolute bg-white rounded shadow" />
         <div className="left-[134px] top-[691px] absolute text-xs font-normal">
-          Bandung
+          {eventDetail.city}
         </div>
         <div className="left-[134px] top-[711px] absolute text-sm font-bold">
           <a className="no-underline text-emerald-600" href="">
