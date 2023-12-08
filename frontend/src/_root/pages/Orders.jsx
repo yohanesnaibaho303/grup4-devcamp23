@@ -1,73 +1,41 @@
-import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Orders = () => {
   return (
-    <div className="w-[390px] h-[844px] relative bg-white">
-      <div className="left-[48px] top-[17px] absolute text-black text-base font-bold font-['Open Sans']">
-        Riwayat Pemesanan
+    <div className="min-h-screen">
+      <div className="flex p-4 items-center gap-3">
+        <FaArrowLeft className="text-xl" />
+        <h3 className="font-bold text font-['Open Sans'] text-black">
+          Riwayat Pesanan
+        </h3>
       </div>
-      <div className="w-[390px] h-[0px] left-0 top-[54px] absolute border border-zinc-300"></div>
-      <div className="w-6 h-6 left-[16px] top-[16px] absolute" />
-      <div className="w-[358px] h-[147px] left-[16px] top-[70px] absolute bg-white rounded shadow" />
-      <div className="w-[358px] h-[147px] left-[16px] top-[233px] absolute bg-white rounded shadow" />
-      <div className="w-7 h-7 left-[32px] top-[78px] absolute bg-emerald-600 rounded" />
-      <div className="w-7 h-7 left-[32px] top-[241px] absolute bg-emerald-600 rounded" />
-      <div className="w-[52px] h-[29px] left-[70px] top-[77px] absolute">
-        <div className="left-0 top-0 absolute text-black text-xs font-bold font-['Open Sans']">
-          Event
-        </div>
-        <div className="left-0 top-[15px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-          8 Dec 2023
-        </div>
-      </div>
-      <div className="w-[52px] h-[29px] left-[70px] top-[240px] absolute">
-        <div className="left-0 top-0 absolute text-black text-xs font-bold font-['Open Sans']">
-          Event
-        </div>
-        <div className="left-0 top-[15px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-          8 Dec 2023
-        </div>
-      </div>
-      <div className="left-[32px] top-[155px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        Min, 10 Dec 2023
-      </div>
-      <div className="left-[32px] top-[318px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        Min, 10 Dec 2023
-      </div>
-      <div className="left-[32px] top-[177px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        Total Bayar
-      </div>
-      <div className="left-[32px] top-[340px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        Total Bayar
-      </div>
-      <div className="w-[358px] h-[0px] left-[16px] top-[114px] absolute border border-gray-200"></div>
-      <div className="w-[358px] h-[0px] left-[16px] top-[277px] absolute border border-gray-200"></div>
-      <div className="left-[32px] top-[136px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Konser Jekardah
-      </div>
-      <div className="left-[32px] top-[299px] absolute text-black text-sm font-bold font-['Open Sans']">
-        Konser Jekardah
-      </div>
-      <div className="left-[32px] top-[122px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        SHOW-GOOD 3
-      </div>
-      <div className="left-[32px] top-[285px] absolute text-black text-[10px] font-normal font-['Open Sans']">
-        SHOW-GOOD 3
-      </div>
-      <div className="left-[32px] top-[191px] absolute text-black text-[10px] font-bold font-['Open Sans']">
-        Rp487.500
-      </div>
-      <div className="left-[32px] top-[354px] absolute text-black text-[10px] font-bold font-['Open Sans']">
-        Rp487.500
-      </div>
-      <div className="w-[49px] h-[18px] px-1 py-[5px] left-[314px] top-[84px] absolute bg-emerald-200 rounded justify-center items-center gap-2.5 inline-flex">
-        <div className="text-emerald-600 text-[10px] font-bold font-['Open Sans']">
-          Berhasil
-        </div>
-      </div>
-      <div className="w-[130px] h-[18px] px-3.5 py-[5px] left-[233px] top-[247px] absolute bg-lime-200 rounded justify-center items-center gap-2.5 inline-flex">
-        <div className="text-lime-400 text-[10px] font-bold font-['Open Sans']">
-          Menunggu Pembayaran
+
+      <hr />
+
+      <div className="mx-4 flex flex-col gap-2 mt-4  ">
+        {/* Card */}
+        <div className="shadow-xl drop-shadow-sm rounded px-4 pt-2 pb-3 border">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="bg-green-700 w-7 h-7 rounded mr-2" />
+              <div>
+                <p className="text-sm font-bold">Event</p>
+                <p className="text-xs">8 Dec 2023</p>
+              </div>
+            </div>
+            <p className="bg-green-400 text-green-700 text-sm py-1 px-2 rounded-md">
+              Berhasil
+            </p>
+          </div>
+          <hr className="mt-2" />
+          <div className="py-2">
+            <p className="text-sm">Reguler</p>
+            <h6 className="font-bold text-lg">Konser Jekardah</h6>
+            <p className="text-sm">Min, 10 Dec 2023</p>
+          </div>
+
+          <p className="text-sm mt-2">Total bayar</p>
+          <p className="font-bold text-sm">Rp487.500</p>
         </div>
       </div>
     </div>
