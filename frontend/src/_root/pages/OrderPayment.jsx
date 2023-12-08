@@ -1,53 +1,43 @@
-import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 const OrderPayment = () => {
   return (
-    <div className="w-[390px] h-[844px] relative bg-white">
-      <div className="w-[352px] h-12 px-[99px] py-5 left-[19px] top-[778px] absolute bg-emerald-600 rounded justify-center items-center gap-3.5 inline-flex">
-        <div className="text-white text-base font-bold font-['Inter']">
-          Saya sudah bayar
+    <div className="flex flex-col justify-between min-h-screen">
+      <div>
+        <div className="flex p-4 items-center gap-3">
+          <FaArrowLeft className="text-xl" />
+          <h3 className="font-bold text font-['Open Sans'] text-black">
+            Transfer Sekarang
+          </h3>
+        </div>
+
+        <hr />
+
+        <div className="flex px-4 mt-4 align-middle">
+          <div className="h-12 w-12 bg-green-700 rounded-lg mr-4" />
+          <div>
+            <h4 className="font-bold">Bank GoTo</h4>
+            <p className="text-sm">PT GoTo Gojek Tokopedia Tbk</p>
+          </div>
+        </div>
+
+        <div className="px-4 mt-6">
+          <h3 className="font-bold text-black">Nomor Rekening</h3>
+          <p className="mt-4 font-bold bg-gray-300 p-4 rounded-2xl">12345678</p>
+        </div>
+
+        <div className="px-4 mt-6">
+          <h3 className="font-bold text-black">Jumlah Transfer</h3>
+          <p className="mt-4 font-bold bg-gray-300 p-4 rounded-2xl">12345678</p>
         </div>
       </div>
-      <div className="w-[352px] h-12 px-[99px] py-5 left-[19px] top-[714px] absolute bg-white rounded border-2 border-emerald-600 justify-center items-center gap-3.5 inline-flex">
-        <div className="text-emerald-600 text-base font-bold font-['Inter']">
-          Kembali ke beranda
-        </div>
-      </div>
-      <div className="left-[48px] top-[20px] absolute text-black text-base font-bold font-['Open Sans']">
-        Transfer Sekarang
-      </div>
-      <div className="w-[390px] h-[0px] left-0 top-[59px] absolute border border-zinc-300"></div>
-      <div className="w-6 h-6 left-[16px] top-[19px] absolute" />
-      <div className="w-12 h-12 left-[16px] top-[76px] absolute bg-emerald-600 rounded-lg" />
-      <div className="w-[167px] h-[37px] left-[79px] top-[81px] absolute">
-        <div className="left-0 top-0 absolute text-black text-sm font-bold font-['Open Sans']">
-          Bank GoTo
-        </div>
-        <div className="left-0 top-[21px] absolute text-black text-xs font-normal font-['Open Sans']">
-          PT GoTo Gojek Tokopedia Tbk
-        </div>
-      </div>
-      <div className="w-[357px] px-[17px] py-5 left-[16px] top-[184px] absolute bg-zinc-300 rounded-2xl justify-start items-start gap-[221px] inline-flex">
-        <div className="text-black text-base font-bold font-['Open Sans']">
-          12345678
-        </div>
-        <div className="w-6 h-6 relative">
-          <div className="w-4 h-[18px] left-[4px] top-[3px] absolute"></div>
-        </div>
-      </div>
-      <div className="w-[357px] px-[17px] py-5 left-[14px] top-[320px] absolute bg-zinc-300 rounded-2xl justify-center items-center gap-[206px] inline-flex">
-        <div className="text-black text-base font-bold font-['Open Sans']">
-          Rp890.123
-        </div>
-        <div className="w-6 h-6 relative">
-          <div className="w-4 h-[18px] left-[4px] top-[3px] absolute"></div>
-        </div>
-      </div>
-      <div className="left-[17px] top-[146px] absolute text-black text-base font-bold font-['Open Sans']">
-        Nomor Rekening
-      </div>
-      <div className="left-[16px] top-[281px] absolute text-black text-base font-bold font-['Open Sans']">
-        Jumlah Transfer
+      <div className="flex flex-col px-4 gap-3 mb-4">
+        <button className="w-full border-green-700 rounded-lg border-2">
+          <p className="font-bold text-green-700 py-3">Kembali ke beranda</p>
+        </button>
+        <button className="w-full bg-green-700 rounded-lg ">
+          <p className="font-bold text-white py-3">Kembali ke beranda</p>
+        </button>
       </div>
     </div>
   );
