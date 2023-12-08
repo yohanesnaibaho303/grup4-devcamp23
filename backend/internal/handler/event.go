@@ -35,6 +35,7 @@ func (e *Event) GetAll(w http.ResponseWriter, r *http.Request) {
 
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{
@@ -61,6 +62,7 @@ func (e *Event) GetByID(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	event, err := e.svc.GetByID(r.Context(), uuid)
@@ -72,6 +74,7 @@ func (e *Event) GetByID(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{
@@ -98,6 +101,7 @@ func (e *Event) GetTicketCategoriesByEventID(w http.ResponseWriter, r *http.Requ
 		}
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	tickets, err := e.svc.GetTicketCategoriesByEventID(r.Context(), eventUUID)
@@ -109,6 +113,7 @@ func (e *Event) GetTicketCategoriesByEventID(w http.ResponseWriter, r *http.Requ
 		}
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{

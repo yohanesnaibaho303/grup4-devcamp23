@@ -35,6 +35,7 @@ func (o *Order) GetAll(w http.ResponseWriter, r *http.Request) {
 
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{
@@ -61,6 +62,7 @@ func (o *Order) GetByID(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	event, err := o.svc.GetByID(r.Context(), uuid)
@@ -72,6 +74,7 @@ func (o *Order) GetByID(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{
@@ -113,6 +116,7 @@ func (o *Order) ChangeStatusToSuccess(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	err = o.svc.ChangePaymentStatusToSuccess(r.Context(), uuid)
@@ -124,6 +128,7 @@ func (o *Order) ChangeStatusToSuccess(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{

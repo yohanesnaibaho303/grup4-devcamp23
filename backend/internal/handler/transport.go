@@ -33,6 +33,7 @@ func (t *Transport) GetRecommendations(w http.ResponseWriter, r *http.Request) {
 
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(resp)
+		return
 	}
 
 	resp = model.Response{
