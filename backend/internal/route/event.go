@@ -2,14 +2,18 @@ package route
 
 import (
 	"backend/internal/handler"
+	repo "backend/internal/repository/db"
+
 	"backend/internal/service"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/jmoiron/sqlx"
 )
 
-func SetupEventRoutes(r chi.Router) {
-	// repo := repository.NewPostgreEvent(db) // FIXME
-	service := service.NewEventService()
+func SetupEventRoutes(r chi.Router, db *sqlx.DB) {
+	eventRepo := repo.NewEventRepo(db)
+	ticketRepo := repo.NewTicketRepo(db)
+	service := service.NewEventService(eventRepo, ticketRepo)
 	handler := handler.NewEventHandler(service)
 
 	r.Route("/v1/events", func(r chi.Router) {

@@ -2,13 +2,16 @@ package route
 
 import (
 	"backend/internal/handler"
+	dbRepo "backend/internal/repository/db"
 	"backend/internal/service"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/jmoiron/sqlx"
 )
 
-func SetupOrderRoutes(r chi.Router) {
-	service := service.NewOrderService()
+func SetupOrderRoutes(r chi.Router, db *sqlx.DB) {
+	repo := dbRepo.NewOrderRepo(db)
+	service := service.NewOrderService(repo)
 	handler := handler.NewOrderHandler(service)
 
 	r.Route("/v1/orders", func(r chi.Router) {

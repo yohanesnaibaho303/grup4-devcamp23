@@ -9,9 +9,11 @@ import (
 	"time"
 
 	"backend/internal/route"
+	"backend/pkg/db"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jmoiron/sqlx"
 )
 
 func InitServer(ctx context.Context, config Config) error {
@@ -34,7 +36,8 @@ func InitServer(ctx context.Context, config Config) error {
 		json.NewEncoder(w).Encode(resp)
 	})
 
-	initRoutes(r)
+	db := db.NewDB()
+	initRoutes(r, db)
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%d", config.ServerPort),
@@ -63,10 +66,10 @@ func InitServer(ctx context.Context, config Config) error {
 	}
 }
 
-func initRoutes(r chi.Router) {
+func initRoutes(r chi.Router, db *sqlx.DB) {
 	r.Route("/api", func(r chi.Router) {
-		route.SetupEventRoutes(r)
-		route.SetupOrderRoutes(r)
-		route.SetupTransportRoutes(r)
+		route.SetupEventRoutes(r, db)
+		route.SetupOrderRoutes(r, db)
+		route.SetupTransportRoutes(r, db)
 	})
 }

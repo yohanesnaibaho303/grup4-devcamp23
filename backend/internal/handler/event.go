@@ -22,6 +22,11 @@ func NewEventHandler(svc service.Event) Event {
 
 func (e *Event) GetAll(w http.ResponseWriter, r *http.Request) {
 	// TODO: implement
+	_, err := e.svc.GetAll()
+	if err != nil {
+		log.Println("Error", err.Error())
+	}
+
 	type response struct {
 		Status  bool   `json:"status"`
 		Message string `json:"message"`
