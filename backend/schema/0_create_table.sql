@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     email varchar(100) UNIQUE,
     password varchar(100) NOT NULL
-)
+);
 
 -- CREATE TABLE cities
 CREATE TABLE IF NOT EXISTS cities (
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS transport_services (
     type transport_service_enum NOT NULL,
     city_id int REFERENCES cities(id) NOT NULL,
     price NUMERIC NOT NULL
-)
+);
 
 -- CREATE TABLE orders
 CREATE TABLE IF NOT EXISTS orders (
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS orders (
     user_id uuid REFERENCES users(id) NOT NULL,
     ticket_id uuid REFERENCES tickets(id) NOT NULL,
     transport_id int REFERENCES transport_services(id)
-)
+);
 
 -- CREATE TABLE payments
 CREATE TYPE payment_status_enum AS ENUM ('success', 'pending', 'failed');
@@ -58,4 +58,4 @@ CREATE TABLE IF NOT EXISTS payments (
     amount NUMERIC NOT NULL,
     created_at timestamp NOT NULL,
     updated_at timestamp
-)
+);
