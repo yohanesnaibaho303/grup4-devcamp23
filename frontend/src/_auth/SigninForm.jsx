@@ -1,4 +1,8 @@
+import { useNavigate, Link } from "react-router-dom";
+
 const SigninForm = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex items-center justify-center pt-28">
@@ -31,26 +35,31 @@ const SigninForm = () => {
                 Password
               </label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
               />
             </div>
             <div>
-              <a className="text-sm text-[#04AA5E]" href="#">
+              <a className="no-underline text-sm text-[#04AA5E] " href="#">
                 Forgot your password?
               </a>
             </div>
-            <button
-              type="submit"
-              className="bg-[#04AA5E] w-max m-auto px-28 py-2 rounded text-white text-sm font-normal"
+            <Link
+              to="/home"
+              className="no-underline text-white text-sm font-normal"
             >
-              Login
-            </button>
+              <button
+                type="submit"
+                className="bg-[#04AA5E] w-max m-auto px-28 py-2 rounded text-white text-sm font-normal"
+              >
+                Login
+              </button>
+            </Link>
           </form>
           <div className="text-sm text-center mt-[1.6rem]">
             Dont have an account yet?{" "}
-            <a className="text-sm text-[#04AA5E]" href="#">
+            <a className="no-underline text-sm text-[#04AA5E]" href="#">
               Sign up for free!
             </a>
           </div>

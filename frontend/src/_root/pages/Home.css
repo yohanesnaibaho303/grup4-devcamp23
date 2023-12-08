@@ -1,0 +1,194 @@
+.container {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  background-color: white;
+}
+
+.title {
+  left: 16px;
+  top: 16px;
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.eventContainer {
+  width: 171px;
+  position: absolute;
+  top: 62px;
+  left: 16px;
+}
+
+.eventCard {
+  width: 171px;
+  height: 250px;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eventImageContainer {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.eventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.eventContent {
+  padding: 8px;
+}
+
+.eventName {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.eventLocation {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.rightEventContainer {
+  width: 171px;
+  position: absolute;
+  top: 62px;
+  left: 203px;
+}
+
+.rightEventCard {
+  width: 171px;
+  height: 250px;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rightEventImageContainer {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.rightEventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.rightEventContent {
+  padding: 8px;
+}
+
+.rightEventName {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.rightEventLocation {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+/* styles.css */
+
+.bottomLeftEventContainer {
+  width: 171px;
+  position: absolute;
+  top: 269px;
+  left: 16px;
+}
+
+.bottomLeftEventCard {
+  width: 171px;
+  height: 250px;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottomLeftEventImageContainer {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.bottomLeftEventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.bottomLeftEventContent {
+  padding: 8px;
+}
+
+.bottomLeftEventName {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.bottomLeftEventLocation {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+/* styles.css */
+
+.bottomRightEventContainer {
+  width: 171px;
+  position: absolute;
+  top: 269px;
+  left: 203px;
+}
+
+.bottomRightEventCard {
+  width: 171px;
+  height: 250px;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottomRightEventImageContainer {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.bottomRightEventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.bottomRightEventContent {
+  padding: 8px;
+}
+
+.bottomRightEventName {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.bottomRightEventLocation {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
