@@ -31,7 +31,9 @@ const OrderPayment = () => {
 
         <div className="px-4 mt-6">
           <h3 className="font-bold text-black">Jumlah Transfer</h3>
-          <p className="mt-4 font-bold bg-gray-300 p-4 rounded-2xl">12345678</p>
+          <p className="mt-4 font-bold bg-gray-300 p-4 rounded-2xl">
+            Rp330.123
+          </p>
         </div>
       </div>
       <div className="flex flex-col px-4 gap-3 mb-4">
