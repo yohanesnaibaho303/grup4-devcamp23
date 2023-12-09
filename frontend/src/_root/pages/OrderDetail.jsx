@@ -53,7 +53,7 @@ const OrderDetail = () => {
       <hr />
 
       <div className="p-4">
-        <h6 className="font-bold text-black">Transaksi berhasil</h6>
+        <h6 className="font-bold text-black">Detail</h6>
         <div className="flex justify-between text-sm mt-2">
           <p>Nama Event</p>
           <p className="font-bold">Artic Monkeys Asia Tour 2023</p>
