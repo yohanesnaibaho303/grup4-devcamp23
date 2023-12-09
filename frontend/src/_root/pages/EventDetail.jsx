@@ -1,12 +1,9 @@
-import axios from "axios";
-
 import { eventHome } from "../../constans";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const EventDetail = () => {
   const { id } = useParams();
   const eventDetail = eventHome.find((e) => e.id === id);
-  // console.log(eventDetail);
 
   return (
     <div className="event-detail">
@@ -34,14 +31,16 @@ const EventDetail = () => {
         </div>
         <div className="">
           <div className="left-[16px] top-[875px] absolute text-xs font-normal">
-            Harga Tiket
+            Harga tiket mulai dari
           </div>
           <div className="left-[16px] top-[890px] absolute text-sm font-bold">
             Rp148.500
           </div>
           <div className="w-20 h-[35px] px-[27px] py-[13px] left-[294px] top-[875px] absolute bg-emerald-600 rounded justify-center items-center gap-2.5 inline-flex">
             <div className="text-white text-xs font-bold">
-              <button>Cek Tiket</button>
+              <Link to={`/${id}/tickets`}>
+                <button>Cek Tiket</button>
+              </Link>
             </div>
           </div>
         </div>

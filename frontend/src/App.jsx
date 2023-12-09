@@ -21,10 +21,10 @@ function App() {
         <Route path="/home" element={<Home />} />
 
         <Route path="/:id" element={<EventDetail />} />
-        <Route path="/:id/category" element={<CategoryTiket />} />
+        <Route path="/:id/tickets" element={<CategoryTiket />} />
 
         <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/id" element={<OrderDetail />} />
+        <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="/orders/summary" element={<OrderSummary />} />
         <Route path="/orders/payment" element={<OrderPayment />} />
       </Routes>

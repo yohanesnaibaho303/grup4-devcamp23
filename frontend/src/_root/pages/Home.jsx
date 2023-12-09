@@ -4,45 +4,45 @@ import "./Home.css";
 
 import { FaHistory } from "react-icons/fa";
 import goHealingAxios from "../../helpers/axios";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const getEvents = async () => {
+    const getEventsData = async () => {
       try {
         const response = await goHealingAxios.get("/api/v1/events");
-        const data = await response.json();
+        const payload = response.data;
 
-        console.log(data);
+        setEvents(payload.data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    getEvents();
+    getEventsData();
   }, []);
 
   return (
     <div className="min-h-screen p-4">
       <div className="flex justify-between items-center mb-6">
         <h3 className="font-bold text-black">Events</h3>
-        <FaHistory />
+        <Link to="/orders">
+          <FaHistory />
+        </Link>
       </div>
 
-      <div className="flex gap-4">
-        {/* card item */}
-        <div className="w-1/2 rounded-lg shadow-lg  ">
-          <img
-            className="rounded-t-lg"
-            src="https://imgsrv2.voi.id/GNyuL4nPhKn-fRQV4AK1Q2gFL1zEmkT2RQhw0e09XE4/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yMzcxNDcvMjAyMjEyMTkxNjA1LW1haW4uY3JvcHBlZF8xNjcxNDQwNzQ5LnBuZw.jpg"
-            alt=""
+      <div className="grid grid-cols-2 gap-4">
+        {events.map((event, idx) => (
+          <EventCard
+            key={idx + event.name}
+            id={event.id}
+            imageUrl={event.image_url}
+            city={event.city}
+            name={event.name}
           />
-          <div className="px-2 pt-4 pb-4">
-            <p className="text-sm ">Jakarta</p>
-            <h6 className="font-bold">SEA AquariumTM</h6>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -50,13 +50,15 @@ const Home = () => {
 
 const EventCard = ({ id, imageUrl, city, name }) => {
   return (
-    <div className="w-1/2 rounded-lg shadow-lg  ">
-      <img className="rounded-t-lg" src={imageUrl} alt={name} />
-      <div className="px-2 pt-4 pb-4">
-        <p className="text-sm ">{city}</p>
-        <h6 className="font-bold">{name}</h6>
+    <Link to={`/${id}`}>
+      <div className="w-full rounded-lg shadow-lg  ">
+        <img className="rounded-t-lg w-full h-28" src={imageUrl} alt={name} />
+        <div className="px-2 pt-4 pb-4">
+          <p className="text-sm ">{city}</p>
+          <h6 className="font-bold">{name}</h6>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

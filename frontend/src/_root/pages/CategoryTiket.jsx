@@ -1,4 +1,5 @@
 import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CategoryTiket = () => {
   return (
@@ -16,10 +17,23 @@ const CategoryTiket = () => {
         <h6>Reguler</h6>
         <p className="text-xs">Berlaku untuk 1 orang</p>
         <div className="flex justify-between mt-2">
-          <p className="font-bold">Rp850.000</p>
+          <p className="font-bold">148.500</p>
           <button className="border-2 border-green-700 rounded-lg px-4">
             <p className="font-bold text-sm text-green-700">Pilih</p>
           </button>
+        </div>
+      </div>
+
+      <div className="p-4">
+        <h6>VIP</h6>
+        <p className="text-xs">Berlaku untuk 1 orang</p>
+        <div className="flex justify-between mt-2">
+          <p className="font-bold">300.000</p>
+          <Link to="/orders/summary">
+            <button className="border-2 border-green-700 rounded-lg px-4">
+              <p className="font-bold text-sm text-green-700">Pilih</p>
+            </button>
+          </Link>
         </div>
       </div>
       <hr />
