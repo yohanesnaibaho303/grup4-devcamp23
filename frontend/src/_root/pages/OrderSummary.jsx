@@ -77,7 +77,9 @@ const OrderSummary = () => {
 
         <div className="flex justify-between p-4">
           <h6 className="font-bold text-black">Total Pembayaran</h6>
-          <p className="font-bold">Rp330.000</p>
+          <p className="font-bold">
+            {textGoRideVisibility ? "Rp330.000" : "Rp300.000"}
+          </p>
         </div>
       </div>
 
