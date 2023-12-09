@@ -94,7 +94,11 @@ const OrderSummary = () => {
       {suggestTransportModalVisibility ? (
         <div className="fixed bottom-0 bg-white px-4 w-full pt-6 border-t-2 border-gray-700 rounded-t-2xl">
           <h6 className="font-bold">Ga pengen ribet mikirin transport?</h6>
-          <div className="bg-gray-300 w-full h-48 mt-3" />
+          <img
+            className="w-full h-48 mt-3 bg-contain object-cover"
+            src="/assets/confuse.jpg"
+            alt=""
+          />
           <div className="flex flex-col gap-3 mb-4 mt-6">
             <button className="w-full border-green-700 rounded-lg border-2">
               <p className="font-bold text-green-700 py-2">Ga, makasih</p>
