@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {
   const [suggestTransportModalVisibility, setSuggestTransportModalVisibility] =
@@ -34,7 +34,10 @@ const OrderSummary = () => {
     <div className="min-h-screen flex flex-col justify-between">
       <div>
         <div className="flex p-4 items-center gap-3">
-          <FaArrowLeft className="text-xl" />
+          <Link to="/home">
+            <FaArrowLeft className="text-xl" />
+          </Link>
+
           <h3 className="font-bold text font-['Open Sans'] text-black">
             Ringkasan Pesanan
           </h3>
